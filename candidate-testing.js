@@ -37,30 +37,29 @@ function askQuestion() {
 
 function gradeQuiz(candidateAnswers) {
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly //
+
+  console.log("Candidate Name: " + candidateName);
+
   let grade = [];
   for (let i = 0; i < correctAnswers.length; i++) {
+    console.log(`${i + 1}) ${questions[i]}
+Your Answer: ${candidateAnswers[i]}
+Correct Answer: ${correctAnswers[i]}
+`);
     if (candidateAnswers[i].toLowerCase() == correctAnswers[i].toLowerCase()) {
       grade.push(correctAnswers[i]);
-      console.log(`Correct! The answer is ${correctAnswers[i]}`);
-    } else {
-      console.log(
-        `Incorrect. You answered ${candidateAnswers[i]}, but the correct answer is ${correctAnswers[i]}.`
-      );
     }
   }
 
   //TODO 3.2 use this variable to calculate the candidates score.
-  console.log(grade);
-
   let percentCorrect = (grade.length / questions.length) * 100;
+  console.log(
+    `Overall Grade: ${percentCorrect}% (${grade.length} of ${questions.length} responses correct)`
+  );
   if (percentCorrect >= 80) {
-    console.log(
-      `Congratulations, ${candidateName}! You got ${percentCorrect}% of the answers right! You pass!`
-    );
+    console.log(`>>> Status: PASSED! <<<`);
   } else {
-    console.log(
-      `You have failed the test, ${candidateName}-san. Only ${percentCorrect} were correct. You must now commit seppaku.`
-    );
+    console.log(`>>> Status: FAILED. You must now commit seppaku. <<<`);
   }
 
   // Compare the candidate answers with the correct answers,
